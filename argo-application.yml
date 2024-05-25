@@ -3,10 +3,8 @@ kind: Application
 metadata:
   name: my-nginx-app
   namespace: argocd
-  finalizers:
-    - argocd.argoproj.io/resources-finalizer
 spec:
-  project: my-nginx-app
+  project: default
   source:
     repoURL: https://github.com/trxngxx/my-nginx-app.git
     targetRevision: HEAD
@@ -18,3 +16,5 @@ spec:
     automated:
       prune: true
       selfHeal: true
+    syncOptions:
+      - CreateNamespace=false
